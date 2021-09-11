@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 const inquirer = require("inquirer");
 const table = require("console.table");
 
+// Connection Properties
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -10,12 +11,14 @@ const connection = mysql.createConnection({
     database: "employee_db"
 });
 
+// Creating Connection and Connection to database
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
     askQuestions();
 });
 
+//ask questions function
 function askQuestions() {
     inquirer.prompt({
         message: "what would you like to do?",
@@ -30,6 +33,8 @@ function askQuestions() {
             "QUIT"
         ],
         name: "choice"
+
+        // Switch case depending on user option
     }).then(answers => {
         console.log(answers.choice);
         switch (answers.choice) {
@@ -64,6 +69,7 @@ function askQuestions() {
     })
 }
 
+// View all employees 
 function viewEmployees() {
     connection.query("SELECT * FROM employee", function (err, data) {
         console.table(data);
@@ -71,6 +77,7 @@ function viewEmployees() {
     })
 }
 
+// View all department
 function viewDepartments() {
     connection.query("SELECT * FROM department", function (err, data) {
         console.table(data);
@@ -78,6 +85,7 @@ function viewDepartments() {
     })
 }
 
+// Add employee
 function addEmployee() {
     inquirer.prompt([{
             type: "input",
@@ -109,6 +117,7 @@ function addEmployee() {
     })
 }
 
+// Add Department
 function addDepartment() {
     inquirer.prompt([{
         type: "input",
@@ -124,6 +133,7 @@ function addDepartment() {
     })
 }
 
+// Add Role
 function addRole() {
     inquirer.prompt([
         {
@@ -149,6 +159,7 @@ function addRole() {
 
 }
 
+// Update Employee Role
 function updateEmployeeRole() {
     inquirer.prompt([
         {
