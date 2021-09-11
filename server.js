@@ -124,5 +124,30 @@ function addDepartment() {
     })
 }
 
+function addRole() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "What is the title of the new role?"
+        }, {
+            type: "number",
+            name: "salary",
+            message: "What is the salary of the new role?"
+        }, {
+            type: "number",
+            name: "department_id",
+            message: "Enter department ID:"
+        }
+    ]).then(function (response) {
+        connection.query("INSERT INTO roles (title, salary, department_id) values (?, ?, ?)", 
+        [response.title, response.salary, response.department_id], function (err, data) {
+            console.table(data);
+        })
+        askQuestions();
+    })
+
+}
+
         askQuestions();
     
