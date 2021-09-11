@@ -35,6 +35,8 @@ After cloning the repository you must locally install the required packages by r
 
 ## Link through the video
 
+https://drive.google.com/file/d/1Yobrv_BEaq_6sU95s93lyyLfTvM4sP0s/view
+
 ## [Questions](#table-of-contents)
 Please contact me using the following links:
 [GitHub](https://github.com/soaresmaria)
