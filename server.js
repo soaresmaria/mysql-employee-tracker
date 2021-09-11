@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require("inquirer");
+const table = require("console.table");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -60,6 +61,20 @@ function askQuestions() {
                 connection.end()
                 break;
         }
+    })
+}
+
+function viewEmployees() {
+    connection.query("SELECT * FROM employee", function (err, data) {
+        console.table(data);
+        askQuestions();
+    })
+}
+
+function viewDepartments() {
+    connection.query("SELECT * FROM department", function (err, data) {
+        console.table(data);
+        askQuestions();
     })
 }
 
