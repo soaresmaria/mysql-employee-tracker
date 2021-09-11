@@ -109,6 +109,20 @@ function addEmployee() {
     })
 }
 
+function addDepartment() {
+    inquirer.prompt([{
+        type: "input",
+        name: "department",
+        message: "What is the name of the new department?"
+    }, ]).then(function(res) {
+        connection.query('INSERT INTO department (name) VALUES (?)', 
+        [res.department], function(err, data) {
+            if (err) throw err;
+            console.table("Successfully Inserted");
+            askQuestions();
+        })
+    })
+}
 
         askQuestions();
     
